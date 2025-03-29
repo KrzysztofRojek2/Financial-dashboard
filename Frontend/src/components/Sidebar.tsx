@@ -71,7 +71,6 @@ const Sidebar = () => {
               <FontAwesomeIcon icon={icon} />
               <p>{label}</p>
             </Link>
-            <hr className="text-gray-700" />
           </>
         ))}
       </nav>
