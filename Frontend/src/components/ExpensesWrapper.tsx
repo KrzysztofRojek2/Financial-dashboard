@@ -1,17 +1,17 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ExpenseItem from "./ExpenseItem";
-import Button from "./Button";
-import { useState } from "react";
-import Modal from "./Modal";
-import InputField from "./InputField";
-import { useExpensesData, useAddExpense } from "../api/expenses";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ExpenseItem from './ExpenseItem';
+import Button from './Button';
+import { useState } from 'react';
+import Modal from './Modal';
+import InputField from './InputField';
+import { useExpensesData, useAddExpense } from '../api/expenses';
 
 const ExpensesWrapper = () => {
   const { data: expensesData, isLoading, isError, refetch } = useExpensesData();
   const [isAddModalOpen, setAddModalOpen] = useState(false);
-  const [newExpenseName, setNewExpenseName] = useState("");
-  const [newExpenseCost, setNewExpenseCost] = useState("");
+  const [newExpenseName, setNewExpenseName] = useState('');
+  const [newExpenseCost, setNewExpenseCost] = useState('');
 
   const { mutate: addExpense, isPending: isAdding } = useAddExpense();
 
@@ -26,13 +26,13 @@ const ExpensesWrapper = () => {
 
     addExpense(newExpense, {
       onSuccess: () => {
-        setAddModalOpen(false); 
-        setNewExpenseName("");
-        setNewExpenseCost("");
+        setAddModalOpen(false);
+        setNewExpenseName('');
+        setNewExpenseCost('');
         refetch();
       },
       onError: (error) => {
-        console.error("Error adding expense:", error);
+        console.error('Error adding expense:', error);
       },
     });
   };
@@ -40,7 +40,12 @@ const ExpensesWrapper = () => {
   return (
     <div className="div-primary p-6 md:p-10 gap-5">
       {expensesData?.map((expense, index) => (
-        <ExpenseItem key={index} id={expense.id} expenseName={expense.name} cost={expense.cost} />
+        <ExpenseItem
+          key={index}
+          id={expense.id}
+          expenseName={expense.name}
+          cost={expense.cost}
+        />
       ))}
 
       <Button
@@ -56,7 +61,7 @@ const ExpensesWrapper = () => {
         title="Add Expense"
         onClose={() => setAddModalOpen(false)}
         onConfirm={handleAddExpense}
-        confirmText={isAdding ? "Adding..." : "Add"}
+        confirmText={isAdding ? 'Adding...' : 'Add'}
       >
         <div className="flex flex-col items-center gap-4">
           <InputField

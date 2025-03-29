@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -10,9 +10,9 @@ import Expenses from './pages/Expenses';
 import Profile from './pages/Profile';
 import ScrollToTop from './components/ScrollToTop';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
 const queryClient = new QueryClient();
 

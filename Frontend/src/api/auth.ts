@@ -10,7 +10,7 @@ const loginRequest = async (credentials: AuthRequest) => {
   const { token, userId } = response.data;
 
   useAuthStore.getState().setAuth(token, userId);
-  console.log("Zalogowano, token:", token, "userId:", userId);
+  console.log('Zalogowano, token:', token, 'userId:', userId);
 
   return { token, userId };
 };
@@ -27,7 +27,10 @@ export const useLogin = () => {
   });
 };
 
-const registerRequest = async (credentials: { email: string; password: string }) => {
+const registerRequest = async (credentials: {
+  email: string;
+  password: string;
+}) => {
   await axios.post(`${BASE_URL}auth/register`, credentials);
 };
 

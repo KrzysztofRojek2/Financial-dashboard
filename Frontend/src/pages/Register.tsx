@@ -1,32 +1,37 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import InputField from "../components/InputField";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useRegister } from "../api/auth";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
+import InputField from '../components/InputField';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useRegister } from '../api/auth';
 
 const Register = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
   const { mutate: register, isPending: isRegisterLoading } = useRegister();
-  
+
   const handleRegister = () => {
-    register({ email, password },
+    register(
+      { email, password },
       {
         onSuccess: () => {
-          toast.success("Rejestracja udana, zostaniesz przekierowany do strony logowania", {
-            onClose: () => {
-              navigate("/login");
-            },
-          });
+          toast.success(
+            'Rejestracja udana, zostaniesz przekierowany do strony logowania',
+            {
+              onClose: () => {
+                navigate('/login');
+              },
+            }
+          );
         },
         onError: () => {
-          toast.error("Błąd rejestracji");
+          toast.error('Błąd rejestracji');
         },
-    });
+      }
+    );
   };
 
   return (
@@ -57,7 +62,7 @@ const Register = () => {
           <hr className="text-gray-300 mb-1" />
           <div className="flex justify-end text-sm">
             <p>
-              Already have an account?{" "}
+              Already have an account?{' '}
               <Link to="/login" className="cursor-pointer underline">
                 Log In
               </Link>
@@ -65,8 +70,12 @@ const Register = () => {
           </div>
         </div>
 
-        <Button variant="secondary" onClick={handleRegister} disabled={isRegisterLoading}>
-          {isRegisterLoading ? "Rejestracja..." : "SIGN UP"}
+        <Button
+          variant="secondary"
+          onClick={handleRegister}
+          disabled={isRegisterLoading}
+        >
+          {isRegisterLoading ? 'Rejestracja...' : 'SIGN UP'}
         </Button>
 
         <p className="text-center">Or Sign Up Using</p>

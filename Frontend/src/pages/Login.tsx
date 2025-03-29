@@ -1,30 +1,32 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import InputField from "../components/InputField";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useLogin } from "../api/auth";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
+import InputField from '../components/InputField';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useLogin } from '../api/auth';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   // Użycie hooka useLogin
   const { mutate: login, isPending: isLoginLoading } = useLogin();
 
   const handleLogin = async () => {
-    login({ email, password },
+    login(
+      { email, password },
       {
         onSuccess: () => {
-          toast.success("Zalogowano pomyślnie!");
-          navigate("/dashboard");
+          toast.success('Zalogowano pomyślnie!');
+          navigate('/dashboard');
         },
         onError: () => {
-          toast.error("Błąd logowania. Spróbuj ponownie.");
+          toast.error('Błąd logowania. Spróbuj ponownie.');
         },
-    });
+      }
+    );
   };
 
   return (
@@ -54,14 +56,20 @@ const Login = () => {
           <hr className="text-gray-300 mb-1" />
           <div className="flex justify-between text-sm">
             <p>
-              No account? 
-              <Link to="/register" className="cursor-pointer underline">Register</Link>
+              No account?
+              <Link to="/register" className="cursor-pointer underline">
+                Register
+              </Link>
             </p>
             <p className="cursor-pointer underline">Forgot password?</p>
           </div>
         </div>
-        <Button variant="secondary" onClick={handleLogin} disabled={isLoginLoading}>
-          {isLoginLoading ? "Logowanie..." : "LOGIN"}
+        <Button
+          variant="secondary"
+          onClick={handleLogin}
+          disabled={isLoginLoading}
+        >
+          {isLoginLoading ? 'Logowanie...' : 'LOGIN'}
         </Button>
         <p className="text-center">Or Sign Up Using</p>
         <div className="flex justify-center mt-5 gap-5">

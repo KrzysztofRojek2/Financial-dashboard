@@ -1,8 +1,7 @@
-import ExpensesChart from "../components/ExpensesChart";
-import ExpensesWrapper from "../components/ExpensesWrapper";
+import ExpensesChart from '../components/ExpensesChart';
+import ExpensesWrapper from '../components/ExpensesWrapper';
 
 const Expenses = () => {
-
   return (
     <>
       <div className="div-primary p-10">

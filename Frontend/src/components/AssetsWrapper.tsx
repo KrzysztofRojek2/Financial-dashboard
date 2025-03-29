@@ -1,20 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import AssetItem from "./AssetItem";
-import Button from "./Button";
-import Modal from "./Modal";
-import InputField from "./InputField";
-import { SketchPicker } from "react-color";
-import { useState } from "react";
-import { useAssetData, useAddAsset } from "../api/assets";
-import { toast } from "react-toastify";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import AssetItem from './AssetItem';
+import Button from './Button';
+import Modal from './Modal';
+import InputField from './InputField';
+import { SketchPicker } from 'react-color';
+import { useState } from 'react';
+import { useAssetData, useAddAsset } from '../api/assets';
+import { toast } from 'react-toastify';
 
 const AssetsWrapper = () => {
   const { data: assets, isLoading, error, refetch } = useAssetData();
   const [isAddModalOpen, setAddModalOpen] = useState(false);
-  const [newName, setNewName] = useState("");
-  const [newCost, setNewCost] = useState("");
-  const [newColor, setNewColor] = useState("#ffffff");
+  const [newName, setNewName] = useState('');
+  const [newCost, setNewCost] = useState('');
+  const [newColor, setNewColor] = useState('#ffffff');
   const [showColorPicker, setShowColorPicker] = useState(false);
   const { mutate: addAssetMutate } = useAddAsset();
 
@@ -25,19 +25,19 @@ const AssetsWrapper = () => {
         {
           onSuccess: () => {
             setAddModalOpen(false);
-            setNewName("");
-            setNewCost("");
-            setNewColor("#ffffff");
+            setNewName('');
+            setNewCost('');
+            setNewColor('#ffffff');
             refetch();
-            toast.success("Asset added succesfully!");
+            toast.success('Asset added succesfully!');
           },
         }
       );
     } else {
-      toast.warn("Please fill in all fields!");
+      toast.warn('Please fill in all fields!');
     }
   };
-  
+
   if (isLoading) {
     return <div>Ładowanie...</div>;
   }
@@ -62,7 +62,11 @@ const AssetsWrapper = () => {
         <p>Brak assetów.</p>
       )}
 
-      <Button variant="secondary" style="hover:text-blue-500 self-end" onClick={() => setAddModalOpen(true)}>
+      <Button
+        variant="secondary"
+        style="hover:text-blue-500 self-end"
+        onClick={() => setAddModalOpen(true)}
+      >
         <FontAwesomeIcon size="2x" icon={faPlus} />
       </Button>
       <Modal
@@ -90,8 +94,14 @@ const AssetsWrapper = () => {
           <div className="flex flex-col relative">
             <label className="pl-2 text-sm">Color</label>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-lg border border-white" style={{ backgroundColor: newColor }}></div>
-              <Button variant="secondary" onClick={() => setShowColorPicker(!showColorPicker)}>
+              <div
+                className="w-10 h-10 rounded-lg border border-white"
+                style={{ backgroundColor: newColor }}
+              ></div>
+              <Button
+                variant="secondary"
+                onClick={() => setShowColorPicker(!showColorPicker)}
+              >
                 Pick Color
               </Button>
             </div>

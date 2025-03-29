@@ -1,18 +1,40 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { useBankData } from "../api/bank";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+import { useBankData } from '../api/bank';
 
 const BankBalanceChart = () => {
   const { data, isLoading, isError } = useBankData();
-  
-  const monthNames: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const monthNames: string[] = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error fetching bank data</p>;
 
-  const balanceHistory = data?.balanceHistory?.map(entry => ({
-    month: monthNames[parseInt(entry.month.substring(5, 7), 10) - 1],
-    balance: entry.balance
-  })) || [];
+  const balanceHistory =
+    data?.balanceHistory?.map((entry) => ({
+      month: monthNames[parseInt(entry.month.substring(5, 7), 10) - 1],
+      balance: entry.balance,
+    })) || [];
 
   return (
     <>
@@ -26,18 +48,24 @@ const BankBalanceChart = () => {
             angle={-45}
             textAnchor="end"
             interval={0}
-            tick={{ fontSize: 12, fill: "#FFFFFF" }}
+            tick={{ fontSize: 12, fill: '#FFFFFF' }}
           />
-          <YAxis stroke="#2A4F77" tick={{ fontSize: 12, fill: "#FFFFFF" }} />
+          <YAxis stroke="#2A4F77" tick={{ fontSize: 12, fill: '#FFFFFF' }} />
           <Tooltip
             contentStyle={{
-              backgroundColor: "#121826",
-              borderColor: "#1E2539",
-              color: "#FFFFFF",
-              borderRadius: "1rem",
+              backgroundColor: '#121826',
+              borderColor: '#1E2539',
+              color: '#FFFFFF',
+              borderRadius: '1rem',
             }}
           />
-          <Line type="linear" dataKey="balance" stroke="#4A90E2" strokeWidth={2} dot={false} />
+          <Line
+            type="linear"
+            dataKey="balance"
+            stroke="#4A90E2"
+            strokeWidth={2}
+            dot={false}
+          />
         </LineChart>
       </ResponsiveContainer>
     </>

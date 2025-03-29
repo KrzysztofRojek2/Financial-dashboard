@@ -1,16 +1,15 @@
-import PortfolioAssetChart from '../components/AssetChart'
-import AssetsWrapper from "../components/AssetsWrapper";
+import PortfolioAssetChart from '../components/AssetChart';
+import AssetsWrapper from '../components/AssetsWrapper';
 
 const Assets = () => {
- 
   return (
-   <>
-    <div className="div-primary p-10">
-      <PortfolioAssetChart height={550} />
-    </div>
-    <AssetsWrapper />
-   </>   
-  )
-}
+    <>
+      <div className="div-primary p-10">
+        <PortfolioAssetChart height={550} />
+      </div>
+      <AssetsWrapper />
+    </>
+  );
+};
 
-export default Assets
+export default Assets;

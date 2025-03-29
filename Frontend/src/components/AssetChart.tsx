@@ -1,6 +1,14 @@
-import React from "react";
-import { PieChart, Pie, Tooltip, Cell, Legend, ResponsiveContainer, Label } from "recharts";
-import { useAssetData } from "../api/assets";
+import React from 'react';
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+  Legend,
+  ResponsiveContainer,
+  Label,
+} from 'recharts';
+import { useAssetData } from '../api/assets';
 
 interface AssetChartProps {
   height: number;
@@ -28,7 +36,9 @@ const AssetChart: React.FC<AssetChartProps> = ({ height }) => {
             cy="50%"
             outerRadius={130}
             innerRadius={70}
-            label={({ name, value }) => `${name}: ${(value / totalCost * 100).toFixed(1)}%`}
+            label={({ name, value }) =>
+              `${name}: ${((value / totalCost) * 100).toFixed(1)}%`
+            }
             stroke="#1E2539"
             strokeWidth={5}
             labelLine={{ strokeWidth: 1 }}
@@ -40,12 +50,12 @@ const AssetChart: React.FC<AssetChartProps> = ({ height }) => {
           <Tooltip
             formatter={(value) => `$${value.toLocaleString()}`}
             contentStyle={{
-              backgroundColor: "#121826",
-              borderColor: "#1E2539",
-              borderRadius: "1rem",
+              backgroundColor: '#121826',
+              borderColor: '#1E2539',
+              borderRadius: '1rem',
             }}
-            itemStyle={{ color: "#FFFFFF" }}
-            labelStyle={{ color: "#FFFFFF" }}
+            itemStyle={{ color: '#FFFFFF' }}
+            labelStyle={{ color: '#FFFFFF' }}
           />
           <Legend
             className="flex flex-col"

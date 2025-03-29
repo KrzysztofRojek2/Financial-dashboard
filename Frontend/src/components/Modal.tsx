@@ -1,6 +1,6 @@
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "./Button";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from './Button';
 
 interface ModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({
   children,
   onClose,
   onConfirm,
-  confirmText = "Confirm",
+  confirmText = 'Confirm',
 }) => {
   if (!isOpen) return null;
 
@@ -34,7 +34,9 @@ const Modal: React.FC<ModalProps> = ({
         <div className="mb-6">{children}</div>
 
         <div className="flex justify-around">
-          <Button variant="secondary" onClick={onClose}>Cancel</Button>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
           {onConfirm && (
             <Button variant="secondary" onClick={onConfirm}>
               {confirmText}

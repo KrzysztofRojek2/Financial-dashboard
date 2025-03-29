@@ -1,11 +1,15 @@
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import Modal from "./Modal";
-import InputField from "./InputField";
-import { useDeleteExpense, useExpensesData, useUpdateExpense } from "../api/expenses";
-import { toast } from "react-toastify";
-import Button from "./Button";
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import Modal from './Modal';
+import InputField from './InputField';
+import {
+  useDeleteExpense,
+  useExpensesData,
+  useUpdateExpense,
+} from '../api/expenses';
+import { toast } from 'react-toastify';
+import Button from './Button';
 
 interface ExpenseItemProps {
   id: number;
@@ -23,17 +27,16 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ id, expenseName, cost }) => {
   const { mutate: deleteExpense } = useDeleteExpense();
   const { mutate: updateExpense } = useUpdateExpense();
 
-
   const handleUpdateExpense = () => {
     updateExpense(
-      { id, name: editedName, cost: Number(editedCost)},
+      { id, name: editedName, cost: Number(editedCost) },
       {
         onSuccess: () => {
-          toast.success("Expense updated successfully!")
+          toast.success('Expense updated successfully!');
           refetch();
         },
         onError: () => {
-          toast.error("Error updating expense!")
+          toast.error('Error updating expense!');
         },
       }
     );
@@ -43,25 +46,31 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ id, expenseName, cost }) => {
   const handleDeleteExpense = () => {
     deleteExpense(id, {
       onSuccess: () => {
-        setDeleteModalOpen(false); 
-        refetch(); 
-        toast.success("Expense deleted succesfully!")
+        setDeleteModalOpen(false);
+        refetch();
+        toast.success('Expense deleted succesfully!');
       },
       onError: () => {
-        toast.error("Expense couldn't be deleted!")
-      }
+        toast.error("Expense couldn't be deleted!");
+      },
     });
   };
-  
+
   return (
     <div className="flex w-full justify-between items-center px-4 md:px-10 py-5 bg-[#121826] rounded-3xl text-sm sm:text-lg shadow-lg shadow-gray-950">
       <p className="w-1/4">{expenseName}</p>
       <p className="md:w-1/2">${cost}</p>
       <div className="flex gap-2 md:gap-10">
-        <Button style="hover:!text-blue-500" onClick={() => setEditModalOpen(true)}>
+        <Button
+          style="hover:!text-blue-500"
+          onClick={() => setEditModalOpen(true)}
+        >
           <FontAwesomeIcon icon={faEdit} className="cursor-pointer" />
         </Button>
-        <Button style="hover:!text-red-500" onClick={() => setDeleteModalOpen(true)}>
+        <Button
+          style="hover:!text-red-500"
+          onClick={() => setDeleteModalOpen(true)}
+        >
           <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
         </Button>
       </div>

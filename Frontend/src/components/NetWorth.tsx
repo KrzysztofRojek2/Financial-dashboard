@@ -1,18 +1,26 @@
-import { useUserData } from "../api/user"
+import { useUserData } from '../api/user';
 
 const NetWorth = () => {
-  const { data: user, isLoading: userLoading, isError: userError } = useUserData();
+  const {
+    data: user,
+    isLoading: userLoading,
+    isError: userError,
+  } = useUserData();
 
   const renderNetWorth = () => {
     if (userLoading) {
       return <h1 className="text-3xl md:text-5xl font-bold z-2">Loading...</h1>;
     }
     if (userError) {
-      return <h1 className="text-3xl md:text-5xl font-bold z-2 text-red-400">Error!</h1>;
+      return (
+        <h1 className="text-3xl md:text-5xl font-bold z-2 text-red-400">
+          Error!
+        </h1>
+      );
     }
     return (
       <h1 className="text-3xl md:text-5xl font-bold z-2">
-        ${user?.netWorth?.toLocaleString() || "0"}
+        ${user?.netWorth?.toLocaleString() || '0'}
       </h1>
     );
   };
@@ -23,7 +31,7 @@ const NetWorth = () => {
       <p className="text-lg md:text-xl z-2">Total Net Worth</p>
       {renderNetWorth()}
     </div>
-  )
-}
+  );
+};
 
 export default NetWorth;
